@@ -1,0 +1,22 @@
+<p>
+  <a id="my-toggle-click">Toggle</a>
+</p>
+
+<div id="foo" style="border: 1px solid red;">
+  <p>bar</p>
+  <p>
+    最后，请试试看把 toggle 改成
+
+    slideToggle
+    fadeToggle
+    会有不同的动画效果。
+  </p>
+</div>
+
+<script>
+  $("#foo").hide();
+
+  $("#my-toggle-click").hover(function(){
+    $("#foo").toggle();
+  })
+</script>
