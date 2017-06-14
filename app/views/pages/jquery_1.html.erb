@@ -1,3 +1,10 @@
+<script>
+$(document).ready(function(){
+  $("#my-click").click(function(){
+    $("#foo").html("<h1>zoo</h1>");
+  });
+})
+</script>
 <p>
   <a id="my-click" class="btn btn-default"> Click Me</a>
 </p>
@@ -10,9 +17,3 @@ append 把内容插在指定元素里面的最后面
 before 把内容插在指定元素的前面
 after 把内容插在指定元素的后面</p>
 </div>
-
-<script>
-  $("#my-click").click(function(){
-    $("#foo").html("<h1>zoo</h1>");
-  })
-</script>
