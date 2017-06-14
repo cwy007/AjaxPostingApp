@@ -15,18 +15,8 @@
         <%= render :partial => "like", :locals => { :post => post } %>
       </span>
 
-      <span>
-        <% if !post.find_favorite(current_user) %>
-          <%= link_to favorite_post_path(post), :method => :post, :class => "btn btn-default" do %>
-            <i class="fa fa-heart-o"></i>
-            <%= post.favorites.count %>
-          <% end %>
-        <% else %>
-          <%= link_to unfavorite_post_path(post), :method => :post, :class => "btn btn-success"  do %>
-            <i class="fa fa-heart-o "></i>
-            <%= post.favorites.count %>
-          <% end %>
-        <% end %>
+      <span id="post-favorite-<%= post.id %>" >
+        <%= render :partial => "favorite", :locals => { :post => post } %>
       </span>
 
       <% if current_user && post.user == current_user %>
