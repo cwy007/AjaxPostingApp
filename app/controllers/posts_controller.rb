@@ -34,6 +34,23 @@ class PostsController < ApplicationController
     render "like"
   end
 
+  def favorite
+    @post = Post.find(params[:id])
+    unless @post.find_favorite(current_user)
+      Favorite.create!( :user => current_user, :post => @post )
+    end
+
+    redirect_to posts_path
+  end
+
+  def unfavorite
+    @post = Post.find(params[:id])
+    favorite = @post.find_favorite(current_user)
+    favorite.destroy
+
+    redirect_to posts_path
+  end
+
   protected
 
   def post_params

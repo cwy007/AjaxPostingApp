@@ -11,4 +11,8 @@ class User < ApplicationRecord
   def display_name
     self.email.split("@").first
   end
+
+  has_many :favorites
+  has_many :favorited_posts, :through => :favorites, :source => :post
+  
 end
