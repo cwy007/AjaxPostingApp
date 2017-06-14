@@ -13,3 +13,19 @@
 
   <% end %>
 </div>
+
+<script>
+  $("#post-list").on("click", ".delete-post", function(evt){
+    evt.preventDefault();
+    var url = $(this).attr("href");
+
+    $.ajax({
+      url: url,
+      method: 'DELETE',
+      dataType: 'json',
+      success: function(data){
+        $("#post-" + data["id"]).remove();
+      }
+    })
+  })
+</script>

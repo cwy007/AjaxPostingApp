@@ -13,6 +13,6 @@ class Post < ApplicationRecord
   has_many :favorited_users, :through => :favorites, :source => :user
 
   def find_favorite(user)
-    self.favorites.where( :user_id == user.id ).first
+    self.favorites.where( :user_id == user.try(:id) ).first
   end
 end
