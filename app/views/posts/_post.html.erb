@@ -3,7 +3,12 @@
     <%= post.user.display_name %>
   </div>
   <div class="panel-body">
-    <%= post.content %>
+    <p>
+      <%= post.content %>
+    </p>
+    <span id="post-thumbup-<%= post.id %>" class="label label-success">
+      <%= post.likes.count %> 👍
+    </span>
     <div class="text-right">
 
       <span id="post-like-<%= post.id %>">
