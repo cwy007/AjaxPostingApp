@@ -31,8 +31,8 @@
       success: function(data){
         $(that).closest(".panel").remove();
       }
-    })
-  })
+    });
+  });
 
 // -----------endless page---------------
   var current_post_id = <%= @posts.last.id %>;
@@ -68,7 +68,7 @@
         })
       }
     }
-  })
+  });
 
 // --------------check box tag-------------
 
