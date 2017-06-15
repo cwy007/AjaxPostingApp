@@ -10,11 +10,14 @@
       <%= post.likes.count %> 👍
     </span>
 
-    <div class="raty"></div>
-    <div id="hint"></div>
+    <div class="hint">
+
+    </div>
+    <span class="raty" data-score="<%= post.find_score(current_user).try(:score) || 0 %>" data-score-url="<%= rate_post_path(post) %>">
+    </span>
+    <span class="average_score "><%= post.average_score %></span>
 
     <div class="text-right">
-
       <span id="post-like-<%= post.id %>">
         <%= render :partial => "like", :locals => { :post => post } %>
       </span>

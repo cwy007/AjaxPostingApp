@@ -38,6 +38,24 @@
   var current_post_id = <%= @posts.last.id %>;
 
   $(window).scroll(function(){
+    // ----------- 解决当用无限卷轴时，raty出不来的问题 ----------
+    $(".raty").raty({
+      cancel: true,
+      path: '/images/',
+      score: function() { return $(this).data('score'); },
+      click: function(score) {
+        var that = this;
+        $.ajax({
+          url: $(this).data("score-url"),
+          method: "POST",
+          data: { score: score },
+          dataType: "json",
+          success: function(data){
+            $(that).closest(".panel-body").find(".average_score").html( data["average_score"] );
+          }
+        })
+      }
+    });
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       var url = "/posts?max_id=" + current_post_id;
       if (url) {
@@ -98,13 +116,23 @@
   });
 
   // --------------jQuery raty plugin---------------
-  $(".raty").raty( {
-    path: '/images/',
-    cancel :true,
-    target: '#hint',
-    targetType: 'score',
-    targetText : '--'
 
-   } );
+    $(".raty").raty({
+      cancel: true,
+      path: '/images/',
+      score: function() { return $(this).data('score'); },
+      click: function(score) {
+        var that = this;
+        $.ajax({
+          url: $(this).data("score-url"),
+          method: "POST",
+          data: { score: score },
+          dataType: "json",
+          success: function(data){
+            $(that).closest(".panel-body").find(".average_score").html( data["average_score"] );
+          }
+        })
+      }
+    });
 
 </script>
