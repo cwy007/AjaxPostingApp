@@ -14,5 +14,9 @@ class User < ApplicationRecord
 
   has_many :favorites
   has_many :favorited_posts, :through => :favorites, :source => :post
-  
+
+  def is_admin?
+    role == "admin"
+  end
+
 end
