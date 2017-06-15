@@ -85,8 +85,14 @@
           category_id: $(this).val()
         }
       },
+      beforeSend: function(){
+        $(that).after( $(' <img src="/images/ajax-loader.gif" id="ajax-loading"> ') );
+      },
+      complete: function(){
+        $("#ajax-loading").remove();
+      },
       success: function(data){
-        $(that).closest("#category").find("span").html("" + data["category"]);
+        $(that).closest("#category").find("span").html(data["category"]);
       }
     });
   });
