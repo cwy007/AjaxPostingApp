@@ -51,7 +51,7 @@
 
   // --------------check box tag-------------
 
-  $(".toggle-flag").on('change', function(){
+  $("#post-list").on('change', ".toggle-flag", function(){
     var url = $(this).data("url");
 
     $.ajax({
