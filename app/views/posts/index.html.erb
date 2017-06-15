@@ -38,6 +38,7 @@
   var current_post_id = <%= @posts.last.id %>;
 
   $(window).scroll(function(){
+
     // ----------- 解决当用无限卷轴时，raty出不来的问题 ----------
     $(".raty").raty({
       cancel: true,
@@ -56,6 +57,7 @@
         })
       }
     });
+
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       var url = "/posts?max_id=" + current_post_id;
       if (url) {
@@ -68,7 +70,7 @@
     }
   })
 
-  // --------------check box tag-------------
+// --------------check box tag-------------
 
   $("#post-list").on('change', ".toggle-flag", function(){
     var url = $(this).data("url");
@@ -88,7 +90,7 @@
     });
   });
 
-  // ------------category select_tag--------------
+// ------------category select_tag--------------
 
   $("#post-list").on('change', ".select_category", function(){
     var url = $(this).data("url");
@@ -115,7 +117,7 @@
     });
   });
 
-  // --------------jQuery raty plugin---------------
+// --------------jQuery raty plugin---------------
 
     $(".raty").raty({
       cancel: true,
