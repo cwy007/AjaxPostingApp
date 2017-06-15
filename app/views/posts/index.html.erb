@@ -69,4 +69,25 @@
       }
     });
   });
+
+  // ------------category select_tag--------------
+
+  $("#post-list").on('change', ".select_category", function(){
+    var url = $(this).data("url");
+    var that = this;
+
+    $.ajax({
+      url: url,
+      method: "PATCH",
+      dataType: "json",
+      data: {
+        post: {
+          category_id: $(this).val()
+        }
+      },
+      success: function(data){
+        $(that).closest("#category").find("span").html("" + data["category"]);
+      }
+    });
+  });
 </script>

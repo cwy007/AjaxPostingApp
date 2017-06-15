@@ -15,4 +15,7 @@ class Post < ApplicationRecord
   def find_favorite(user)
     self.favorites.where( :user_id == user.try(:id) ).first
   end
+
+  belongs_to :category, :optional => true
+  
 end

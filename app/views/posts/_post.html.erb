@@ -4,7 +4,7 @@
   </div>
   <div class="panel-body">
     <p>
-      <%= post.content %>
+      <%= simple_format(post.content) %>
     </p>
     <span id="post-thumbup-<%= post.id %>" class="label label-success">
       <%= post.likes.count %> 👍
@@ -28,6 +28,16 @@
   </div>
   <% if current_user && current_user.is_admin? %>
     <div class="panel-footer">
+      <span id="category">
+        <span class="label label-success pull-right" style="font-size: 1.3em;">
+          <% if post.category.present? %>
+            <%= post.category.try(:name) %>
+          <% end %>
+        </span>
+        <%= select_tag "category_id[#{post.id}]", options_for_select(Category.all.map{ |x| [x.name, x.id] }, post.category_id),
+                    :data => { :url => post_path(post) }, :prompt => "请选择分类", :class => "select_category" %>
+      </span>
+
       <label>
         <%= check_box_tag "mark_flag[#{post.id}]", 1, post.flag_at.present?,
                           :data => { :url => toggle_flag_post_path(post) }, :class => "toggle-flag" %>
